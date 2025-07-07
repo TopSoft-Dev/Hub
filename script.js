@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "https://topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/BuyBit_logo.png" // Przykładowy link
         },
         {
-            name: "Portfolio Strona",
-            link: "www.portfolio.example.com",
-            desc: "Moja osobista strona portfolio zbudowana w React.",
+            name: "Strona z prjektami",
+            link: "",
+            desc: "Moja osobista strona portfolio",
             image: "" // Brak obrazka
         }
         // Przykład nowego projektu:
