@@ -1,0 +1,183 @@
+/* Podstawowe style i zmienne */
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #ff4136; /* Czerwony */
+    --background-color: #1a1a1a;
+    --card-background: #2c2c2c;
+    --text-color: #f0f0f0;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    animation: fadeInPage 1s ease-in-out forwards;
+}
+
+/* Animacja pojawienia się strony */
+@keyframes fadeInPage {
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Nagłówek i Logo */
+.header {
+    text-align: center;
+    padding: 2rem 0;
+    animation: slideDown 0.8s ease-out forwards;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 700;
+    cursor: default;
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: slideDown 0.8s 0.5s ease-out forwards;
+}
+
+.logo-part-1 {
+    color: var(--primary-color);
+}
+
+.logo-part-2 {
+    color: var(--secondary-color);
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Siatka projektów */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Styl karty projektu */
+.project-card {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: popIn 0.5s ease-out forwards;
+    position: relative; /* Potrzebne do pozycjonowania pseudoelementu */
+    border: 2px solid transparent; /* Startowa przezroczysta ramka */
+}
+
+/* Efekt podświetlenia przy najechaniu */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, var(--secondary-color), #ff7e5f, #feb47b) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Ignoruj kliknięcia myszą */
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Animacja pojawienia się kart */
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+/* Styl dla obrazka w karcie */
+.card-image {
+    height: 180px; /* Stała wysokość dla obrazka */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid var(--card-background);
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.card-link {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    align-self: flex-end;
+}
+
+.card-link:hover {
+    color: var(--primary-color);
+}
+
+/* Stopka */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--card-background);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .container {
