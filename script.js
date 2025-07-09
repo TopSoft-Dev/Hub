@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "BuyBit - Crypto Trading Game",
             link: "topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/",
             desc: "Gra o trejdowaniu kryptowalutami. Kupuj tanio, sprzedawaj drogo!",
-            image: "https://topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/BuyBit_logo.png" // Przykładowy link
+            image: "https://topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/Logo.jpg" // Przykładowy link
         },
         {
             name: "Kalkulator Procentu Składanego",
