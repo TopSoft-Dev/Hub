@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Kalkulator Procentu Składanego",
             link: "topsoft-dev.github.io/Calc/",
             desc: "Szybki, sprawny, kalkulator procentu składanego z wbudowanymi kursami walut pobieranymi z internetu",
-            image: "https://topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/Logo.jpg" // Brak obrazka
+            image: "https://topsoft-dev.github.io/Calc/Logo.jpg" // Brak obrazka
         }
         // Przykład nowego projektu:
         // ,
