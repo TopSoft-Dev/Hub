@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "https://topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/BuyBit_logo.png" // Przykładowy link
         },
         {
-            name: "Strona z projektami",
-            link: "",
-            desc: "Moja osobista strona z projektami",
+            name: "Kalkulator Procentu Składanego",
+            link: "topsoft-dev.github.io/Calc/",
+            desc: "Szybki, sprawny, kalkulator procentu składanego z wbudowanymi kursami walut pobieranymi z internetu",
             image: "" // Brak obrazka
         }
         // Przykład nowego projektu:
