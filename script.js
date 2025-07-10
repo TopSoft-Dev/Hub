@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
             link: "topsoft-dev.github.io/Calc/",
             desc: "Szybki, sprawny, kalkulator procentu składanego z wbudowanymi kursami walut pobieranymi z internetu",
             image: "https://topsoft-dev.github.io/Calc/Logo.jpg" // Brak obrazka
+        },
+        {
+            name: "Kalkulator Emerytury BTC",
+            link: "topsoft-dev.github.io/BTC-Pension/",
+            desc: "Kalkulator szacujący wartośc emerytury HODLowanej w BTC",
+            image: "https://topsoft-dev.github.io/BTC-Pension/Logo.jpg" // Brak obrazka
         }
         // Przykład nowego projektu:
         // ,
