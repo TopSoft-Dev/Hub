@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
             link: "topsoft-dev.github.io/BTC-Pension/",
             desc: "Kalkulator szacujący wartośc emerytury HODLowanej w BTC",
             image: "https://topsoft-dev.github.io/BTC-Pension/Logo.jpg" // Brak obrazka
+        },
+        {
+            name: "TopFund Terminal",
+            link: "topsoft-dev.github.io/TopFund-Terminal/",
+            desc: "Terminal TopFund",
+            image: "https://topsoft-dev.github.io/TopFund-Terminal/Logo.jpg" // Brak obrazka
         }
         // Przykład nowego projektu:
         // ,
