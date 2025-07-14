@@ -34,8 +34,9 @@ body {
 
 /* Nagłówek i Logo */
 .header {
+    position: relative;
     text-align: center;
-    padding: 2rem 0;
+    padding: 2rem;
     animation: slideDown 0.8s ease-out forwards;
 }
 
@@ -46,6 +47,7 @@ body {
     transform: translateY(-50px);
     opacity: 0;
     animation: slideDown 0.8s 0.5s ease-out forwards;
+    display: inline-block;
 }
 
 .logo-part-1 {
@@ -54,6 +56,26 @@ body {
 
 .logo-part-2 {
     color: var(--secondary-color);
+}
+
+.login-button {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #e86100;
 }
 
 @keyframes slideDown {
@@ -83,11 +105,10 @@ body {
     opacity: 0;
     transform: translateY(30px);
     animation: popIn 0.5s ease-out forwards;
-    position: relative; /* Potrzebne do pozycjonowania pseudoelementu */
-    border: 2px solid transparent; /* Startowa przezroczysta ramka */
+    position: relative;
+    border: 2px solid transparent;
 }
 
-/* Efekt podświetlenia przy najechaniu */
 .project-card::before {
     content: '';
     position: absolute;
@@ -105,14 +126,13 @@ body {
     mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; /* Ignoruj kliknięcia myszą */
+    pointer-events: none;
 }
 
 .project-card:hover::before {
     opacity: 1;
 }
 
-/* Animacja pojawienia się kart */
 @keyframes popIn {
     to {
         opacity: 1;
@@ -125,9 +145,8 @@ body {
     box-shadow: 0 15px 30px var(--shadow-color);
 }
 
-/* Styl dla obrazka w karcie */
 .card-image {
-    height: 180px; /* Stała wysokość dla obrazka */
+    height: 180px;
     background-size: cover;
     background-position: center;
     border-bottom: 2px solid var(--card-background);
@@ -168,7 +187,6 @@ body {
     color: var(--primary-color);
 }
 
-/* Stopka */
 .footer {
     text-align: center;
     padding: 2rem 0;
@@ -178,6 +196,171 @@ body {
     font-size: 0.9rem;
 }
 
+/* Modal styles */
+.modal {
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #2d2d2d;
+    padding: 40px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.login-modal-content h2 {
+    color: #ffffff;
+    border-bottom: 2px solid #fd7e14;
+    padding-bottom: 10px;
+}
+
+.app-brand {
+    color: #fd7e14;
+    font-weight: 700;
+}
+
+.app-subtitle {
+    color: #9ca3af;
+    font-weight: 300;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#loginForm input, #changePasswordForm input, #changePasswordForm select {
+    padding: 10px;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    background-color: #404040;
+    color: #ecf0f1;
+}
+
+#loginForm button, #changePasswordForm button {
+    background-color: #fd7e14;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+#loginForm button:hover, #changePasswordForm button:hover {
+    background-color: #e86100;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.admin-panel-content {
+    max-width: 800px;
+}
+
+#admin-tabs {
+    display: flex;
+    border-bottom: 1px solid #555;
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-link.active {
+    color: #fd7e14;
+    border-bottom: 2px solid #fd7e14;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#permissions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.user-permissions {
+    background-color: #404040;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.user-permissions h4 {
+    margin-top: 0;
+    color: #fd7e14;
+}
+
+.close-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #777;
+}
+
 /* Responsywność */
 @media (max-width: 768px) {
     .container {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+        text-align: left; /* Wyjustuj do lewej wewnątrz flexboxa */
+        flex-grow: 1; /* Pozwól logo zająć dostępną przestrzeń */
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .login-button {
+        position: static;
+        transform: none;
+        white-space: nowrap; /* Zapobiegaj łamaniu tekstu */
+    }
+}

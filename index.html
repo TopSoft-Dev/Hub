@@ -21,6 +21,7 @@
         <div class="logo">
             <span class="logo-part-1">Top</span><span class="logo-part-2">Soft</span>
         </div>
+        <button id="login-button" class="login-button">Zaloguj</button>
     </header>
 
     <main class="container">
@@ -33,6 +34,48 @@
         <p>Topciu, 2025 - topsoft.pl@gmail.com</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Modal Logowania -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content login-modal-content">
+            <h2><span class="app-brand">TopSoft</span> <span class="app-subtitle">HUB</span></h2>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Nazwa użytkownika" required>
+                <input type="password" id="loginPassword" placeholder="Hasło" required>
+                <button type="submit">Zaloguj</button>
+            </form>
+            <p id="loginError" style="color: red; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <!-- Panel Zarządzania Użytkownikami -->
+    <div id="adminPanel" class="modal hidden">
+        <div class="modal-content admin-panel-content">
+            <h2>Panel Zarządzania</h2>
+            <div id="admin-tabs">
+                <button class="tab-link active" data-tab="permissions">Uprawnienia</button>
+                <button class="tab-link" data-tab="passwords">Zmień Hasło</button>
+            </div>
+
+            <div id="permissions" class="tab-content active">
+                <h3>Zarządzaj dostępem do aplikacji</h3>
+                <div id="permissions-container"></div>
+            </div>
+
+            <div id="passwords" class="tab-content">
+                <h3>Zmień hasło</h3>
+                <form id="changePasswordForm">
+                    <select id="passwordUserSelect"></select>
+                    <input type="password" id="newPassword" placeholder="Nowe hasło" required>
+                    <button type="submit">Zmień hasło</button>
+                </form>
+                <p id="passwordChangeStatus"></p>
+            </div>
+            <button id="closeAdminPanel" class="close-button">Zamknij</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js" type="module"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
