@@ -25,6 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "https://topsoft-dev.github.io/BTC-Pension/Logo.jpg" // Brak obrazka
         },
         {
+            name: "Kalkulator Pozycji",
+            link: "topsoft-dev.github.io/Position-Calc/",
+            desc: "Zaawansowany kalkulator do wyliczania pozycji pod autorską strategię",
+            image: "https://topsoft-dev.github.io/Position-Calc/Logo.jpg" // Brak obrazka
+        },
+        {
             name: "TopFund Terminal",
             link: "topsoft-dev.github.io/TopFund-Terminal/",
             desc: "Terminal TopFund",
