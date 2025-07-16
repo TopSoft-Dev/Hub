@@ -421,4 +421,15 @@ body {
         transform: none;
         white-space: nowrap; /* Zapobiegaj łamaniu tekstu */
     }
+
+    .admin-panel-content {
+        width: 95vw; /* Użyj 95% szerokości ekranu */
+        max-width: 95vw; /* Nadpisz 800px */
+        padding: 20px;
+        box-sizing: border-box; /* Upewnij się, że padding jest wliczany w szerokość */
+    }
+
+    #permissions-container {
+        grid-template-columns: 1fr; /* Jedna kolumna na mniejszych ekranach */
+    }
 }
