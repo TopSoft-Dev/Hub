@@ -168,20 +168,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const allUsers = await fetchUsers();
+            const usersToManage = allUsers.filter(user => user.name !== 'Topciu');
             
             // Wszyscy użytkownicy (w tym Topciu) do zmiany hasła
             renderPasswordUsers(allUsers);
 
-            // Renderowanie użytkowników do usunięcia
-            renderDeleteUsers(allUsers.filter(user => user.name !== 'Topciu'));
-
-            // Tylko inni użytkownicy do zarządzania uprawnieniami
-            const usersToManage = allUsers.filter(user => user.name !== 'Topciu');
+            // Zarządzanie uprawnieniami
             if (usersToManage.length > 0) {
                 renderPermissions(usersToManage);
             } else {
                 permissionsContainer.innerHTML = "<p>Brak innych użytkowników do zarządzania.</p>";
             }
+
+            // Zarządzanie usuwaniem użytkowników
+            if (usersToManage.length > 0) {
+                deleteUserForm.classList.remove('hidden');
+                renderDeleteUsers(usersToManage);
+            } else {
+                deleteUserForm.classList.add('hidden');
+                deleteUserStatus.textContent = 'Brak użytkowników do usunięcia.';
+            }
+
         } catch (error) {
             console.error("Błąd podczas otwierania panelu admina:", error);
             permissionsContainer.innerHTML = "<p>Wystąpił błąd podczas ładowania danych.</p>";
