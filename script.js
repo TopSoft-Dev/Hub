@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, where, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, where, doc, updateDoc, addDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Konfiguracja Firebase ---
@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordUserSelect = document.getElementById('passwordUserSelect');
     const newPasswordInput = document.getElementById('newPassword');
     const passwordChangeStatus = document.getElementById('passwordChangeStatus');
+    const addUserForm = document.getElementById('addUserForm');
+    const newUsernameInput = document.getElementById('newUsername');
+    const newUserPasswordInput = document.getElementById('newUserPassword');
+    const addUserStatus = document.getElementById('addUserStatus');
+    const deleteUserForm = document.getElementById('deleteUserForm');
+    const deleteUserSelect = document.getElementById('deleteUserSelect');
+    const deleteUserStatus = document.getElementById('deleteUserStatus');
 
     // --- TWOJE PROJEKTY ---
     const myProjects = [
@@ -153,11 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function openAdminPanel() {
         adminPanel.classList.remove('hidden');
+
+        // Czyszczenie poprzednich statusów
+        passwordChangeStatus.textContent = '';
+        addUserStatus.textContent = '';
+        deleteUserStatus.textContent = '';
+
         try {
             const allUsers = await fetchUsers();
             
             // Wszyscy użytkownicy (w tym Topciu) do zmiany hasła
             renderPasswordUsers(allUsers);
+
+            // Renderowanie użytkowników do usunięcia
+            renderDeleteUsers(allUsers.filter(user => user.name !== 'Topciu'));
 
             // Tylko inni użytkownicy do zarządzania uprawnieniami
             const usersToManage = allUsers.filter(user => user.name !== 'Topciu');
@@ -235,6 +251,16 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordUserSelect.appendChild(option);
         });
     }
+
+    function renderDeleteUsers(users) {
+        deleteUserSelect.innerHTML = '';
+        users.forEach(user => {
+            const option = document.createElement('option');
+            option.value = user.id;
+            option.textContent = user.name;
+            deleteUserSelect.appendChild(option);
+        });
+    }
     
     changePasswordForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -256,6 +282,66 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Błąd zmiany hasła: ", error);
             passwordChangeStatus.textContent = 'Wystąpił błąd podczas zmiany hasła.';
+        }
+    });
+
+    addUserForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = newUsernameInput.value;
+        const password = newUserPasswordInput.value;
+
+        if (!username || !password) {
+            addUserStatus.textContent = 'Nazwa użytkownika i hasło są wymagane.';
+            return;
+        }
+
+        const hashedPassword = await hashPassword(password);
+
+        try {
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("name", "==", username));
+            const existingUser = await getDocs(q);
+
+            if (!existingUser.empty) {
+                addUserStatus.textContent = 'Użytkownik o tej nazwie już istnieje.';
+                return;
+            }
+
+            await addDoc(collection(db, "users"), {
+                name: username,
+                hashedPassword: hashedPassword,
+                permissions: []
+            });
+
+            addUserStatus.textContent = `Użytkownik ${username} został dodany.`;
+            newUsernameInput.value = '';
+            newUserPasswordInput.value = '';
+            openAdminPanel(); // Odśwież panel
+        } catch (error) {
+            console.error("Błąd dodawania użytkownika: ", error);
+            addUserStatus.textContent = 'Wystąpił błąd podczas dodawania użytkownika.';
+        }
+    });
+
+    deleteUserForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userId = deleteUserSelect.value;
+        const userName = deleteUserSelect.options[deleteUserSelect.selectedIndex].text;
+
+        if (!userId) {
+            deleteUserStatus.textContent = 'Proszę wybrać użytkownika do usunięcia.';
+            return;
+        }
+
+        if (confirm(`Czy na pewno chcesz usunąć użytkownika ${userName}?`)) {
+            try {
+                await deleteDoc(doc(db, "users", userId));
+                deleteUserStatus.textContent = `Użytkownik ${userName} został usunięty.`;
+                openAdminPanel(); // Odśwież panel
+            } catch (error) {
+                console.error("Błąd usuwania użytkownika: ", error);
+                deleteUserStatus.textContent = 'Wystąpił błąd podczas usuwania użytkownika.';
+            }
         }
     });
 

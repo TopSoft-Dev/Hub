@@ -339,6 +339,51 @@ body {
     background-color: #777;
 }
 
+/* Dodane dla nowych elementów */
+#addUserForm, #deleteUserForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#addUserForm input, #deleteUserForm select {
+    padding: 10px;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    background-color: #404040;
+    color: #ecf0f1;
+}
+
+#addUserForm button, #deleteUserForm button {
+    background-color: #fd7e14;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+#addUserForm button:hover, #deleteUserForm button:hover {
+    background-color: #e86100;
+}
+
+.user-permissions input[type="checkbox"] {
+    accent-color: #fd7e14; /* Zmiana koloru checkboxa */
+}
+
+/* Poprawki dla widoku mobilnego */
+@media (max-width: 768px) {
+    #changePasswordForm {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Dodanie przerw */
+    }
+}
+
 /* Responsywność */
 @media (max-width: 768px) {
     .container {

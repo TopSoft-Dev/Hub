@@ -54,6 +54,7 @@
             <div id="admin-tabs">
                 <button class="tab-link active" data-tab="permissions">Uprawnienia</button>
                 <button class="tab-link" data-tab="passwords">Zmień Hasło</button>
+                <button class="tab-link" data-tab="users">Zarządzaj Użytkownikami</button>
             </div>
 
             <div id="permissions" class="tab-content active">
@@ -69,6 +70,22 @@
                     <button type="submit">Zmień hasło</button>
                 </form>
                 <p id="passwordChangeStatus"></p>
+            </div>
+
+            <div id="users" class="tab-content">
+                <h3>Dodaj lub usuń użytkownika</h3>
+                <form id="addUserForm">
+                    <input type="text" id="newUsername" placeholder="Nazwa użytkownika" required>
+                    <input type="password" id="newUserPassword" placeholder="Hasło" required>
+                    <button type="submit">Dodaj użytkownika</button>
+                </form>
+                <p id="addUserStatus"></p>
+                <hr>
+                <form id="deleteUserForm">
+                    <select id="deleteUserSelect"></select>
+                    <button type="submit">Usuń użytkownika</button>
+                </form>
+                <p id="deleteUserStatus"></p>
             </div>
             <button id="closeAdminPanel" class="close-button">Zamknij</button>
         </div>
