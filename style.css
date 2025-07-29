@@ -88,8 +88,8 @@ body {
 /* Siatka projektów */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
     padding: 2rem 0;
 }
 
@@ -107,6 +107,7 @@ body {
     animation: popIn 0.5s ease-out forwards;
     position: relative;
     border: 2px solid transparent;
+    cursor: pointer;
 }
 
 .project-card::before {
@@ -146,45 +147,56 @@ body {
 }
 
 .card-image {
-    height: 180px;
+    height: 150px;
     background-size: cover;
     background-position: center;
     border-bottom: 2px solid var(--card-background);
 }
 
 .card-content {
-    padding: 1.5rem;
+    padding: 1.2rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     color: var(--primary-color);
 }
 
 .card-description {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--text-color);
     flex-grow: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
-.card-link {
-    display: inline-block;
-    text-decoration: none;
+/* Ikona kłódki dla projektów wymagających logowania */
+.login-required-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
     color: var(--secondary-color);
-    font-weight: 600;
-    transition: color 0.3s ease;
-    align-self: flex-end;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.card-link:hover {
-    color: var(--primary-color);
+.login-required-icon::before {
+    content: "🔒";
+    font-size: 16px;
 }
 
 .footer {
@@ -431,5 +443,40 @@ body {
 
     #permissions-container {
         grid-template-columns: 1fr; /* Jedna kolumna na mniejszych ekranach */
+    }
+
+    /* Dodatkowe style dla kart na urządzeniach mobilnych */
+    .project-card {
+        -webkit-tap-highlight-color: transparent; /* Usuwa niebieskie podświetlenie na iOS */
+        touch-action: pan-y; /* Pozwala na scrollowanie w pionie */
+        user-select: none; /* Zapobiega zaznaczaniu tekstu */
+    }
+
+    .project-card:active {
+        transform: scale(0.98); /* Delikatne zmniejszenie przy dotknięciu */
+    }
+}
+
+/* Dodatkowe style dla większych ekranów - jeszcze mniejsze karty */
+@media (min-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.2rem;
+    }
+    
+    .card-image {
+        height: 130px;
+    }
+    
+    .card-content {
+        padding: 1rem;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 0.85rem;
     }
 }

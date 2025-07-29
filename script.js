@@ -102,15 +102,80 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.animationDelay = `${index * 0.1}s`;
 
             const imageElement = project.image ? `<div class="card-image" style="background-image: url('${project.image}')"></div>` : '';
+            const loginIcon = project.requiresLogin ? '<div class="login-required-icon"></div>' : '';
 
             card.innerHTML = `
                 ${imageElement}
+                ${loginIcon}
                 <div class="card-content">
                     <h3 class="card-title">${project.name}</h3>
                     <p class="card-description">${project.desc}</p>
-                    <a href="https://${project.link}" target="_blank" rel="noopener noreferrer" class="card-link">Zobacz projekt &rarr;</a>
                 </div>
             `;
+
+            // Zmienne do śledzenia interakcji
+            let isScrolling = false;
+            let startX = 0;
+            let startY = 0;
+            let hasMoved = false;
+
+            // Funkcja do sprawdzania czy to rzeczywiste kliknięcie, a nie scroll
+            const handleClick = (e) => {
+                if (hasMoved || isScrolling) {
+                    return;
+                }
+                window.open(`https://${project.link}`, '_blank', 'noopener,noreferrer');
+            };
+
+            // Obsługa dla urządzeń dotykowych
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                hasMoved = false;
+                isScrolling = false;
+            }, { passive: true });
+
+            card.addEventListener('touchmove', (e) => {
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = Math.abs(currentX - startX);
+                const deltaY = Math.abs(currentY - startY);
+                
+                if (deltaX > 10 || deltaY > 10) {
+                    hasMoved = true;
+                }
+            }, { passive: true });
+
+            card.addEventListener('touchend', (e) => {
+                if (!hasMoved) {
+                    handleClick(e);
+                }
+            });
+
+            // Obsługa dla myszy
+            card.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                startY = e.clientY;
+                hasMoved = false;
+            });
+
+            card.addEventListener('mousemove', (e) => {
+                if (e.buttons === 1) { // Lewy przycisk myszy wciśnięty
+                    const deltaX = Math.abs(e.clientX - startX);
+                    const deltaY = Math.abs(e.clientY - startY);
+                    
+                    if (deltaX > 5 || deltaY > 5) {
+                        hasMoved = true;
+                    }
+                }
+            });
+
+            card.addEventListener('click', handleClick);
+
+            // Zapobiegaj domyślnej akcji podczas scrollowania
+            card.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
 
             projectsGrid.appendChild(card);
         });
