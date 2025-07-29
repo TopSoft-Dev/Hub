@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TWOJE PROJEKTY ---
     const myProjects = [
         {
+            id: "aipaint",
+            name: "Ai Paint",
+            link: "topsoft-dev.github.io/Ai-Paint/",
+            desc: "Paint dla dzieci z modułem Ai i interakcjami",
+            image: "https://topsoft-dev.github.io/Ai-Paint/Logo.jpg"
+        },
+        {
             id: "buybit",
             name: "BuyBit - Crypto Trading Game",
             link: "topsoft-dev.github.io/BuyBit-Crypto-Trading-Game/",
