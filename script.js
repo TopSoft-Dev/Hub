@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TWOJE PROJEKTY ---
     const myProjects = [
         {
+            id: "shareboard",
+            name: "ShareBoard",
+            link: "topsoft-dev.github.io/ShareBoard/",
+            desc: "Tablica kooperacyjna",
+            image: "https://topsoft-dev.github.io/ShareBoard/Logo.jpg"
+        },
+        {
             id: "aipaint",
             name: "Ai Paint",
             link: "topsoft-dev.github.io/Ai-Paint/",
