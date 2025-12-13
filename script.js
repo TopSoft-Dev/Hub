@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TWOJE PROJEKTY ---
     const myProjects = [
         {
+            id: "toptune",
+            name: "TopTune",
+            link: "topsoft-dev.github.io/TopTune/",
+            desc: "Najlepszy odtwarzacz na świecie",
+            image: "https://topsoft-dev.github.io/TopTune/Logo.jpg"
+        },
+        {
             id: "shareboard",
             name: "ShareBoard",
             link: "topsoft-dev.github.io/ShareBoard/",
