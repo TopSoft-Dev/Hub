@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TWOJE PROJEKTY ---
     const myProjects = [
         {
+            id: "cloudbook",
+            name: "CloudBook",
+            link: "topsoft-dev.github.io/CloudBook/",
+            desc: "Biblioteka opowiadań",
+            image: "https://topsoft-dev.github.io/CloudBook/Logo.jpg"
+        },
+        {
             id: "shareboard",
             name: "ShareBoard",
             link: "topsoft-dev.github.io/ShareBoard/",
