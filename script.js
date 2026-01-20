@@ -56,6 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
             image: "https://topsoft-dev.github.io/ShareBoard/Logo.jpg"
         },
         {
+            id: "workplan",
+            name: "WorkPlan",
+            link: "topsoft-dev.github.io/WorkPlan/",
+            desc: "Plan działania",
+            image: "https://topsoft-dev.github.io/WorkPlan/Logo.jpg"
+        },
+        {
             id: "aipaint",
             name: "Ai Paint",
             link: "topsoft-dev.github.io/Ai-Paint/",
